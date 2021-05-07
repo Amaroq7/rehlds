@@ -831,6 +831,10 @@ IRehldsHookRegistry_SV_ShouldSendConsistencyList* CRehldsHookchains::SV_ShouldSe
 	return &m_SV_ShouldSendConsistencyList;
 }
 
+IRehldsHookRegistry_ED_Free* CRehldsHookchains::ED_Free() {
+    return &m_ED_Free;
+}
+
 int EXT_FUNC CRehldsApi::GetMajorVersion()
 {
 	return REHLDS_API_VERSION_MAJOR;

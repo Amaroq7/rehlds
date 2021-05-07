@@ -37,7 +37,7 @@
 #include "pr_dlls.h"
 
 #define REHLDS_API_VERSION_MAJOR 3
-#define REHLDS_API_VERSION_MINOR 8
+#define REHLDS_API_VERSION_MINOR 9
 
 //Steam_NotifyClientConnect hook
 typedef IHookChain<qboolean, IGameClient*, const void*, unsigned int> IRehldsHook_Steam_NotifyClientConnect;
@@ -207,6 +207,10 @@ typedef IVoidHookChainRegistry<> IRehldsHookRegistry_SV_Frame;
 typedef IHookChain<bool, IGameClient *, bool> IRehldsHook_SV_ShouldSendConsistencyList;
 typedef IHookChainRegistry<bool, IGameClient *, bool> IRehldsHookRegistry_SV_ShouldSendConsistencyList;
 
+//ED_Free hook
+typedef IVoidHookChain<edict_t *> IRehldsHook_ED_Free;
+typedef IVoidHookChainRegistry<edict_t *> IRehldsHookRegistry_ED_Free;
+
 class IRehldsHookchains {
 public:
 	virtual ~IRehldsHookchains() { }
@@ -253,6 +257,7 @@ public:
 	virtual IRehldsHookRegistry_SV_CheckConnectionLessRateLimits* SV_CheckConnectionLessRateLimits() = 0;
 	virtual IRehldsHookRegistry_SV_Frame* SV_Frame() = 0;
 	virtual IRehldsHookRegistry_SV_ShouldSendConsistencyList* SV_ShouldSendConsistencyList() = 0;
+	virtual IRehldsHookRegistry_ED_Free* ED_Free() = 0;
 };
 
 struct RehldsFuncs_t {

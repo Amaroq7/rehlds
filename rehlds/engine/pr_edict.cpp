@@ -70,7 +70,12 @@ edict_t *ED_Alloc(void)
 	return e;
 }
 
-void ED_Free(edict_t *ed)
+void EXT_FUNC ED_Free(edict_t *ed)
+{
+    g_RehldsHookchains.m_ED_Free.callChain(ED_Free_internal, ed);
+}
+
+void ED_Free_internal(edict_t *ed)
 {
 	if (!ed->free)
 	{
